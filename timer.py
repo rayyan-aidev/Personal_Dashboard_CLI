@@ -1,5 +1,5 @@
 import time
-from datetime import datetime
+from datetime import datetime, timezone
 
 print("This is the clock app.")
 while True:
@@ -9,7 +9,14 @@ while True:
     if timer_command.lower() == "b":
         break
     if timer_command == "1":
-        pass
+        print("World Clock")
+        print("Current time in UTC:", datetime.now(
+            timezone.utc).strftime("%Y-%m-%d %H:%M:%S"))
+        print("Current time in your local timezone:",
+              datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+        print("To [B]ack")
+        if input().strip().lower() == "b":
+            continue
     elif timer_command == "2":
         countdown_time = input(
             "Where to start countdown from(Format hours-minutes-seconds): ")
@@ -29,6 +36,8 @@ while True:
         continue
     elif timer_command == "3":
         start = input("Press [s] to start.\n")
+        if start.lower().strip() == "b":
+            break
         if start.strip().lower() == "s":
             start_time = time.time()
             print("Stopwatch started. Press [s] to stop.")
@@ -45,3 +54,7 @@ while True:
             else:
                 print(
                     f"Stopwatch stopped. Elapsed time: {elapsed_time / 3600:.2f} hours.")
+        continue
+    else:
+        print("Invalid command. Please try again.")
+        continue
