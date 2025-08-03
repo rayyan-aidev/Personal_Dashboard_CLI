@@ -1,5 +1,5 @@
 import os
-print("This is the notes app.")
+print("\n\n\nThis is the notes app.")
 
 if not (os.path.exists("Personal_Dashboard_CLI/Notes")):
     os.makedirs("Personal_Dashboard_CLI/Notes")

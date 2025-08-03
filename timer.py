@@ -1,7 +1,7 @@
 import time
 from datetime import datetime, timezone
 
-print("This is the clock app.")
+print("\n\n\nThis is the clock app.")
 while True:
     print("To go [B]ack.")
     timer_command = input(

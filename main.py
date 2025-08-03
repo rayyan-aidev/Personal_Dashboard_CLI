@@ -3,7 +3,7 @@ if __name__ == "__main__":
     while True:
         print("To [E]xit")
         command = input(
-            "What do you want to do?\n1-Clock and Timer\n2-Notes\n3-Calculator\n4-To-do app\n5-Goal tracker\n6-User profile").strip()
+            "What do you want to do?\n1-Clock and Timer\n2-Notes\n3-Calculator\n4-To-do app\n5-Goal tracker\n6-User profile\n").strip()
         if command.lower() == "e":
             print("Exiting the personal dashboard CLI.")
             break
