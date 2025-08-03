@@ -1,7 +1,7 @@
 def calculator():
     import math
     while True:
-        print("Type e to exit")
+        print("To [E]xit")
         print("Note: In single-number operations only first number will be used")
         operator = input(
             "Choose from the following:\n1=addition,2=subtraction, 3=division, 4=multiplication, 5=absolute value, 6=square, 7=square root, 8=round, 9=max, 10=min, 11=exponent: ")
