@@ -1,6 +1,7 @@
 import Simple_Calculator_upd
 import notes_app
 import timer
+import goal_tracker
 if __name__ == "__main__":
     print("This is the personal dashboard CLI.")
     while True:
@@ -19,6 +20,6 @@ if __name__ == "__main__":
         elif command == "4":
             pass
         elif command == "5":
-            pass
+            goal_tracker.goal_tracker()
         elif command == "6":
             pass
