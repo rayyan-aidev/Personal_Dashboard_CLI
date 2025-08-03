@@ -91,6 +91,7 @@ while True:
                 with open(f"Personal_Dashboard_CLI/Notes/{title}.txt", "w") as f:
                     for line in lines:
                         f.write(line)
+                print("Lines deleted.")
             except ValueError:
                 print("Please enter a number.")
         elif delete_which == "2":
@@ -107,6 +108,7 @@ while True:
                 "Enter title of your note file: ").strip().title().replace(" ", "_")
             if os.path.exists(f"Personal_Dashboard_CLI/Notes/{title}.txt"):
                 os.remove(f"Personal_Dashboard_CLI/Notes/{title}.txt")
+                print("File deleted.")
             else:
                 print("File does not exist.")
         else:
