@@ -27,3 +27,21 @@ while True:
             time.sleep(1)
         print("Timer completed!")
         continue
+    elif timer_command == "3":
+        start = input("Press [s] to start.\n")
+        if start.strip().lower() == "s":
+            start_time = time.time()
+            print("Stopwatch started. Press [s] to stop.")
+            while True:
+                if input().strip().lower() == "s":
+                    break
+            elapsed_time = time.time() - start_time
+            if elapsed_time < 60:
+                print(
+                    f"Stopwatch stopped. Elapsed time: {elapsed_time:.2f} seconds.")
+            elif elapsed_time < 3600:
+                print(
+                    f"Stopwatch stopped. Elapsed time: {elapsed_time / 60:.2f} minutes.")
+            else:
+                print(
+                    f"Stopwatch stopped. Elapsed time: {elapsed_time / 3600:.2f} hours.")
