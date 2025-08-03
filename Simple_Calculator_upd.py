@@ -1,17 +1,17 @@
 def calculator():
     import math
     while True:
-        print("To [E]xit")
+        print("To go [B]ack")
         print("Note: In single-number operations only first number will be used")
         operator = input(
-            "Choose from the following:\n1=addition,2=subtraction, 3=division, 4=multiplication, 5=absolute value, 6=square, 7=square root, 8=round, 9=max, 10=min, 11=exponent: ")
-        if operator.lower() == "e":
+            "Choose from the following:\n1=addition,2=subtraction, 3=division, 4=multiplication, 5=absolute value, 6=square, 7=square root, 8=round, 9=max, 10=min, 11=exponent:\n").strip()
+        if operator.lower() == "b":
             break
         num1 = input("Enter the first number: ")
-        if num1.lower() == "e":
+        if num1.lower() == "b":
             break
         num2 = input("Enter second number: ")
-        if num2.lower() == "e":
+        if num2.lower() == "b":
             break
         try:
             num1 = float(num1)
