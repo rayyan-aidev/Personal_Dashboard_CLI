@@ -100,11 +100,11 @@ Personal_Dashboard_CLI/
 git clone https://github.com/rayyan-aidev/personal-dashboard-cli.git
 cd personal-dashboard-cli
 python main.py
-
+```
 ---
 
 ## 📄 License
-This project is licensed under the MIT License. See LICENSE for details.
+**This project is licensed under the MIT License. See `LICENSE` for details.**
 
 ---
 
