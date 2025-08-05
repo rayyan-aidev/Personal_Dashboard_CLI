@@ -152,7 +152,7 @@ def login_screen():
                     json.dump(user_details, f, indent=2, sort_keys=True)
                 print("Sign up successful.\n\n")
                 time.sleep(1)
-                return True
+                return True, username
             elif action == "2":
                 if not os.path.exists(file_path):
                     print("No users registered yet.")
@@ -168,10 +168,11 @@ def login_screen():
                     typed_password = hash_password(typed_password)
                     if typed_username in content:
                         password = content[typed_username]
+                        username = typed_username
                         if password == typed_password:
                             print("Login successful.\n\n")
                             time.sleep(1)
-                            return True
+                            return True, username
                         else:
                             print("Password doesn't match")
                     else:
