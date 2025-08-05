@@ -4,7 +4,18 @@ def todo_start():
     import time
     import datetime
 
-    file_path = "Personal_Dashboard_CLI/todo_list.json"
+    if not os.path.exists("Personal_Dashboard_CLI/todo_lists"):
+        os.mkdir("Personal_Dashboard_CLI/todo_lists")
+
+    with open("Personal_Dashboard_CLI/user_profile.json", "r") as file:
+        user_data = json.load(file)
+        username = user_data.get("username", "Please login again")
+
+    if not os.path.exists(f"Personal_Dashboard_CLI/todo_lists/{username}_todo_list"):
+        os.mkdir(f"Personal_Dashboard_CLI/todo_lists/{username}_todo_list")
+
+    file_path = f"Personal_Dashboard_CLI/todo_lists/{username}_todo_list/todo_list.json"
+
     print("This is the to-Do app.")
     while True:
         print("\n\nTo go [B]ack")
@@ -50,7 +61,7 @@ def todo_start():
             time.sleep(1)
         elif command == "2":
             view_command = input(
-                "1-View one task\n2-View alll tasks\n").strip()
+                "1-View one task\n2-View all tasks\n").strip()
             if view_command.lower() == "b":
                 print("Going back to the main menu.")
                 break
