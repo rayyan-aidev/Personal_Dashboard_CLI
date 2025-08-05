@@ -3,12 +3,13 @@ import notes_app
 import timer
 import goal_tracker
 import login_system
+import todo_app
 if __name__ == "__main__":
     print("This is the personal dashboard CLI.")
-    while True:
-        print("\n\nTo [E]xit")
-        login_successful = login_system.login_screen()
-        if login_successful:
+    login_successful = login_system.login_screen()
+    if login_successful:
+        while True:
+            print("\n\nTo [E]xit")
             command = input(
                 "What do you want to do?\n1-Clock and Timer\n2-Notes\n3-Calculator\n4-To-do app\n5-Goal tracker\n6-User profile\n").strip()
             if command.lower() == "e":
@@ -21,14 +22,13 @@ if __name__ == "__main__":
             elif command == "3":
                 Simple_Calculator_upd.calculator()
             elif command == "4":
-                pass
+                todo_app.todo_start()
             elif command == "5":
                 goal_tracker.goal_tracker()
             elif command == "6":
                 pass
             else:
                 print("Invalid command. Please try again.")
-        else:
-            print("Login failed. Please try again.")
-            continue
-    print("You have exited the Personal Dashboard CLI.")
+    else:
+        print("Login failed. Please try again.")
+print("You have exited the Personal Dashboard CLI.")
