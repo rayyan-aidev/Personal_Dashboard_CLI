@@ -1,9 +1,17 @@
 def notes():
     import os
+    import json
     print("\n\n\nThis is the notes app.")
 
     if not (os.path.exists("Personal_Dashboard_CLI/Notes")):
         os.makedirs("Personal_Dashboard_CLI/Notes")
+
+    with open("Personal_Dashboard_CLI/user_profile.json", "r") as file:
+        user_data = json.load(file)
+        username = user_data.get("username", "Please login again")
+
+    if not (os.path.exists(f"Personal_Dashboard_CLI/Notes/{username}_Notes")):
+        os.makedirs(f"Personal_Dashboard_CLI/Notes/{username}_Notes")
 
     def note_take():
         print("Enter your note (type 'end' on a new line to finish):")
@@ -19,34 +27,34 @@ def notes():
         return title, note
 
     while True:
-        print("To [E]xit.")
+        print("To go [B]ack.")
         action = input(
             "What would you like to do:\n1-Write notes\n2-View notes\n3-Delete notes\n")
-        if action.lower().strip() == "e":
+        if action.lower().strip() == "b":
             break
         if action == "1":
             write_mode_choice = input(
                 "Would you like to:\n1-Make a new note\n2-Add to one\n")
-            if write_mode_choice.lower().strip() == "e":
+            if write_mode_choice.lower().strip() == "b":
                 break
             if write_mode_choice == "1":
                 title, note = note_take()
-                if title.lower().strip() == "e" or note.lower().strip() == "e":
+                if title.lower().strip() == "b" or note.lower().strip() == "b":
                     break
-                if os.path.exists(f"Personal_Dashboard_CLI/Notes/{title.replace(' ', '_')}.txt"):
+                if os.path.exists(f"Personal_Dashboard_CLI/Notes/{username}_Notes/{title.replace(' ', '_')}.txt"):
                     print("File already exists.")
                 else:
-                    with open(f"Personal_Dashboard_CLI/Notes/{title.replace(' ', '_')}.txt", "w") as f:
+                    with open(f"Personal_Dashboard_CLI/Notes/{username}_Notes/{title.replace(' ', '_')}.txt", "w") as f:
                         f.write(note)
                     print("Note written")
             elif write_mode_choice == "2":
                 title, note = note_take()
-                if title.lower().strip() == "e" or note.lower().strip() == "e":
+                if title.lower().strip() == "b" or note.lower().strip() == "b":
                     break
-                if not (os.path.exists(f"Personal_Dashboard_CLI/Notes/{title}.txt")):
+                if not (os.path.exists(f"Personal_Dashboard_CLI/Notes/{username}_Notes/{title.replace(' ', '_')}.txt")):
                     print("File doesnt exist.")
                 else:
-                    with open(f"Personal_Dashboard_CLI/Notes/{title.replace(' ', '_')}.txt", "a") as f:
+                    with open(f"Personal_Dashboard_CLI/Notes/{username}_Notes/{title.replace(' ', '_')}.txt", "a") as f:
                         f.write("\n" + note)
                     print("Note written.")
             else:
@@ -54,18 +62,18 @@ def notes():
         elif action == "2":
             title = input(
                 "Enter title of your note file: ").strip().title()
-            if title.lower() == "e":
+            if title.lower() == "b":
                 break
-            if not (os.path.exists(f"Personal_Dashboard_CLI/Notes/{title}.txt")):
+            if not (os.path.exists(f"Personal_Dashboard_CLI/Notes/{username}_Notes/{title.replace(' ', '_')}.txt")):
                 print("File doesnt exist.")
             else:
-                with open(f"Personal_Dashboard_CLI/Notes/{title.replace(' ', '_')}.txt") as f:
+                with open(f"Personal_Dashboard_CLI/Notes/{username}_Notes/{title.replace(' ', '_')}.txt") as f:
                     print(f.read())
         elif action == "3":
             lines_delete = []
             delete_which = input(
                 "1-Delete a single line(Please remember line number)\n2-Clear whole note\n3-Delete whole file\n")
-            if delete_which.lower().strip() == "e":
+            if delete_which.lower().strip() == "b":
                 break
             if delete_which == "1":
                 try:
@@ -73,12 +81,12 @@ def notes():
                     ).title().replace(" ", "_")
                     lines_to_delete = input(
                         "Please enter line(s) (Comma-seperated): ")
-                    if lines_to_delete.lower().strip() == "e":
+                    if lines_to_delete.lower().strip() == "b":
                         break
-                    if not (os.path.exists(f"Personal_Dashboard_CLI/Notes/{title}.txt")):
+                    if not (os.path.exists(f"Personal_Dashboard_CLI/Notes/{username}_Notes/{title.replace(' ', '_')}.txt")):
                         print("File doesnt exist.")
                     else:
-                        with open(f"Personal_Dashboard_CLI/Notes/{title}.txt", "r") as f:
+                        with open(f"Personal_Dashboard_CLI/Notes/{username}_Notes/{title.replace(' ', '_')}.txt", "r") as f:
                             lines = f.readlines()
                     lines_to_delete = lines_to_delete.strip().replace(" ", "").split(",")
                     for line_to_delete in lines_to_delete:
@@ -87,7 +95,7 @@ def notes():
                     for line_delete in lines_delete:
                         if 0 <= line_delete < len(lines):
                             del lines[line_delete]
-                    with open(f"Personal_Dashboard_CLI/Notes/{title}.txt", "w") as f:
+                    with open(f"Personal_Dashboard_CLI/Notes/{username}_Notes/{title.replace(' ', '_')}.txt", "w") as f:
                         for line in lines:
                             f.write(line)
                     print("Lines deleted.")
@@ -96,17 +104,18 @@ def notes():
             elif delete_which == "2":
                 title = input(
                     "Enter title of your note file: ").strip().title().replace(" ", "_")
-                if not (os.path.exists(f"Personal_Dashboard_CLI/Notes/{title}.txt")):
+                if not (os.path.exists(f"Personal_Dashboard_CLI/Notes/{username}_Notes/{title.replace(' ', '_')}.txt")):
                     print("File doesnt exist.")
                 else:
-                    with open(f"Personal_Dashboard_CLI/Notes/{title.replace(' ', '_')}.txt", "w") as f:
+                    with open(f"Personal_Dashboard_CLI/Notes/{username}_Notes/{title.replace(' ', '_')}.txt", "w") as f:
                         pass
                     print("File cleared.")
             elif delete_which == "3":
                 title = input(
                     "Enter title of your note file: ").strip().title().replace(" ", "_")
-                if os.path.exists(f"Personal_Dashboard_CLI/Notes/{title}.txt"):
-                    os.remove(f"Personal_Dashboard_CLI/Notes/{title}.txt")
+                if os.path.exists(f"Personal_Dashboard_CLI/Notes/{username}_Notes/{title}.txt"):
+                    os.remove(
+                        f"Personal_Dashboard_CLI/Notes/{username}_Notes/{title}.txt")
                     print("File deleted.")
                 else:
                     print("File does not exist.")

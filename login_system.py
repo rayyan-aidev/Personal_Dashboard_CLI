@@ -43,9 +43,6 @@ def login_screen():
             for i in range(random.randint(1, 5)):
                 digit = random.choice(digits)
                 username.append(digit)
-            for i in range(random.randint(1, 5)):
-                symbol = random.choice(symbols)
-                username.append(symbol)
             random.shuffle(username)
             username = "".join(username)
         elif username_choice == "2":
