@@ -10,10 +10,12 @@ from datetime import datetime, timedelta
 
 
 if __name__ == "__main__":
+    import os
     print("This is the personal dashboard CLI.")
     login_successful, username = login_system.login_screen()
     if login_successful:
-        user_profile_path = "Personal_Dashboard_CLI/user_profile.json"
+        user_profile_path = os.path.join(os.path.dirname(
+            os.path.abspath(__file__)), "user_profile.json")
         today = datetime.now().date()
         try:
             with open(user_profile_path, "r") as file:

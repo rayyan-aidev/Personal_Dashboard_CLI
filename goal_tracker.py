@@ -4,16 +4,19 @@ def goal_tracker():
     from datetime import datetime
     import time
 
-    with open("Personal_Dashboard_CLI/user_profile.json", "r") as file:
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    with open(os.path.join(script_dir, "user_profile.json"), "r") as file:
         user_data = json.load(file)
         username = user_data.get("username", "Please login again")
 
-    if not os.path.exists("Personal_Dashboard_CLI/Goals"):
-        os.makedirs("Personal_Dashboard_CLI/Goals")
-    if not os.path.exists(f"Personal_Dashboard_CLI/Goals/{username}"):
-        os.makedirs(f"Personal_Dashboard_CLI/Goals/{username}")
+    goals_dir = os.path.join(script_dir, "Goals")
+    if not os.path.exists(goals_dir):
+        os.makedirs(goals_dir)
+    user_goals_dir = os.path.join(goals_dir, username)
+    if not os.path.exists(user_goals_dir):
+        os.makedirs(user_goals_dir)
 
-    goal_file_path = f"Personal_Dashboard_CLI/Goals/{username}/goals.json"
+    goal_file_path = os.path.join(user_goals_dir, "goals.json")
     print("This is the goal tracker.")
     while True:
         print("\n\nTo go [B]ack")

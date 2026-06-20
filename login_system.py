@@ -100,7 +100,8 @@ def login_screen():
 
     symbols = ["@", "!", "#", "&", "$", "%", "*", "_", "-",
                "(", ")", "+", "=", "[", "]", "{", "}", ";", ":", "'", ",", "<", ">", "?", "/", "|",]
-    file_path = "Personal_Dashboard_CLI/login_details.json"
+    file_path = os.path.join(os.path.dirname(
+        os.path.abspath(__file__)), "login_details.json")
     user_details = {
 
     }

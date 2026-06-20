@@ -4,17 +4,20 @@ def todo_start():
     import time
     import datetime
 
-    if not os.path.exists("Personal_Dashboard_CLI/todo_lists"):
-        os.mkdir("Personal_Dashboard_CLI/todo_lists")
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    todo_dir = os.path.join(script_dir, "todo_lists")
+    if not os.path.exists(todo_dir):
+        os.mkdir(todo_dir)
 
-    with open("Personal_Dashboard_CLI/user_profile.json", "r") as file:
+    with open(os.path.join(script_dir, "user_profile.json"), "r") as file:
         user_data = json.load(file)
         username = user_data.get("username", "Please login again")
 
-    if not os.path.exists(f"Personal_Dashboard_CLI/todo_lists/{username}_todo_list"):
-        os.mkdir(f"Personal_Dashboard_CLI/todo_lists/{username}_todo_list")
+    user_todo_dir = os.path.join(todo_dir, f"{username}_todo_list")
+    if not os.path.exists(user_todo_dir):
+        os.mkdir(user_todo_dir)
 
-    file_path = f"Personal_Dashboard_CLI/todo_lists/{username}_todo_list/todo_list.json"
+    file_path = os.path.join(user_todo_dir, "todo_list.json")
 
     print("This is the to-Do app.")
     while True:

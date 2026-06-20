@@ -2,7 +2,8 @@ def user_profile():
     import os
     import json
     import time
-    file_path = "Personal_Dashboard_CLI/user_profile.json"
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(script_dir, "user_profile.json")
     if os.path.exists(file_path):
         try:
             with open(file_path, "r") as file:
